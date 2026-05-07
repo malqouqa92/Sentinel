@@ -1,0 +1,11 @@
+name: researcher
+description: "Research a topic: deep-search -> summarize -> compile report"
+persona_prompt: "You are a research analyst compiling comprehensive briefings."
+skill_pipeline:
+  - web_search_deep
+  - web_summarize
+  - research_report
+# Brain (qwen3:1.7b) is the right pick: one-paragraph summarization is
+# what it's tuned for, and the ctx headroom matters more than code-style
+# precision here.
+model: sentinel-brain

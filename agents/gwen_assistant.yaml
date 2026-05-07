@@ -1,0 +1,8 @@
+name: gwen_assistant
+description: "Gwen general-purpose assistant: run Python/bash/file tasks freely. No KB lookup, no Claude, no graduation, no retries."
+persona_prompt: "You are Gwen, a helpful general-purpose assistant."
+skill_pipeline:
+  - gwen_assist
+# Pin to qwen-coder: STEP-N recipe generation + stepfed execution
+# work better with the code-tuned variant than the chat brain.
+model: qwen-coder

@@ -1,0 +1,8 @@
+name: qcode_assistant
+description: "Qwen-only code assist: KB search + recipe generation + stepfed execution. No Claude teaching overhead."
+persona_prompt: "You are a Python developer. Solve the coding problem step by step."
+skill_pipeline:
+  - qcode_assist
+# Pin to qwen-coder: the code-tuned 3B variant handles STEP-N recipe
+# generation and stepfed execution better than the chat-tuned brain.
+model: qwen-coder

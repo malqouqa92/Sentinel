@@ -1,0 +1,108 @@
+# Sentinel Phase 12 -- candidate profile.
+#
+# Copy this file to workspace/persona/PROFILE.yml and fill in your details.
+# Single source of truth for /jobsearch scoring + filtering.
+#
+# You can also build this interactively from chat:
+#   /profile init               -- creates PROFILE.yml from this template
+#   /profile show               -- prints current values
+#   /profile set <key> <value>  -- update a single scalar (e.g. /profile set candidate.location "Detroit, MI")
+#   /profile edit               -- prints full text + path so you can edit on disk
+#
+# After editing, run /jobsearch to apply the new profile -- changes take effect
+# on the next call (the loader re-reads on every scrape).
+
+candidate:
+  full_name: "Your Name"
+  email: "you@example.com"
+  location: "Detroit, MI"
+  linkedin: "linkedin.com/in/yourhandle"
+
+# Six B2B-sales archetypes preset for Sentinel. Each `fit` is one of:
+#   primary    -- dream role, full weight on archetype-specific framing
+#   secondary  -- good fit, scoring leans this way but not exclusively
+#   adjacent   -- stretch role, accept but don't optimize for
+# Set fit: skip on any archetype you don't want considered.
+target_roles:
+  primary:
+    - "Regional Sales Manager"
+    - "Territory Sales Manager"
+  archetypes:
+    - name: "Regional Sales Manager"
+      level: "Senior"
+      fit: "primary"
+      keywords: ["regional sales", "regional manager", "area sales"]
+    - name: "Territory Sales Manager"
+      level: "Senior"
+      fit: "primary"
+      keywords: ["territory", "field sales", "outside sales"]
+    - name: "Account Executive"
+      level: "Mid-Senior"
+      fit: "secondary"
+      keywords: ["account executive", "account manager", "named accounts"]
+    - name: "Sales Development Representative"
+      level: "Mid"
+      fit: "adjacent"
+      keywords: ["sdr", "bdr", "sales development", "business development representative"]
+    - name: "Sales Operations / RevOps"
+      level: "Senior"
+      fit: "secondary"
+      keywords: ["sales operations", "revops", "revenue operations", "sales ops"]
+    - name: "Customer Success Manager"
+      level: "Senior"
+      fit: "adjacent"
+      keywords: ["customer success", "csm", "account renewal"]
+
+# Title filter -- applied BEFORE LLM extraction (saves Qwen GPU cost).
+# Logic: at least one `positive` must appear AND zero `negative` may appear.
+# `seniority_boost` keywords don't change include/exclude but raise the score
+# in Batch 2's rubric.
+title_filter:
+  positive:
+    - "sales"
+    - "account"
+    - "business development"
+    - "revops"
+    - "customer success"
+  negative:
+    - "intern"
+    - "internship"
+    - "junior"
+    - "entry level"
+    - "engineer"
+    - "developer"
+    - "sde"
+    - "data scientist"
+    - "machine learning"
+  seniority_boost:
+    - "senior"
+    - "principal"
+    - "lead"
+    - "manager"
+    - "director"
+
+# Companies you never want to see again. /jobsearch --avoid "X,Y,Z" merges
+# with this list at call time. Case-insensitive substring match against
+# the posting's company field.
+avoid_companies:
+  - "Example Bad Co"
+
+narrative:
+  headline: "B2B sales operator focused on regional manufacturing accounts"
+  exit_story: "Why I'm looking now and what I'm optimizing for."
+  superpowers:
+    - "Pipeline forecasting"
+    - "Multi-stakeholder closes"
+  proof_points:
+    - name: "Project / quota beat / case study"
+      hero_metric: "112% of quota three years running"
+
+compensation:
+  target_range_usd: "$120K-180K OTE"
+  minimum_usd: "$95K base"
+
+location:
+  primary_city: "Detroit, MI"
+  workplace_preference: "all"   # one of: on-site | hybrid | remote | all
+  willing_to_relocate: false
+  visa_status: "US citizen"

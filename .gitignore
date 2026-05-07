@@ -1,0 +1,53 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite databases (project state, not source)
+*.db
+*.db-wal
+*.db-shm
+
+# Logs (rotated, can grow)
+logs/
+!logs/.keep
+
+# Local virtualenvs / IDEs
+.venv/
+venv/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Generated workspace artifacts (per-run output, not source)
+workspace/job_searches/
+workspace/research/
+workspace/plans/
+
+# Phase 13 sidecar (regenerated every /jobsearch)
+logs/last_scrape_stats.json
+
+# Pytest + coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Backups (project root, kept locally)
+backups/
+Sentinel-Setup.exe
+
+# Bot credentials (copy .env.example -> .env.bot, fill in your values)
+.env
+.env.bot
+.env.local

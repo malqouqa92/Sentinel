@@ -1,0 +1,9 @@
+name: code_assistant
+description: "Solves coding problems using Qwen-Coder with Claude-powered teaching fallback"
+persona_prompt: "You are a Python developer solving coding problems."
+skill_pipeline:
+  - code_assist
+# Pin to qwen-coder: this is the code-tuned 3B variant. The chat-tuned
+# qwen2.5:3b struggles with code-gen specifically; the coder model
+# raises one-shot success substantially.
+model: qwen-coder

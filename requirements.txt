@@ -1,0 +1,14 @@
+pydantic==2.11.7
+pytest==8.3.3
+PyYAML==6.0.2
+httpx==0.28.1
+beautifulsoup4==4.12.3
+python-telegram-bot==21.6
+# Phase 10
+python-jobspy>=1.1,<2.0
+# Phase 11
+croniter>=2.0,<3.0
+tzdata>=2024.1     # Windows zoneinfo data (no-op on Linux)
+aiohttp>=3.9,<4.0  # localhost health endpoint
+# Phase 12.5
+pgeocode>=0.5,<1.0 # offline US zip -> lat/long for the commute gate

@@ -1,0 +1,79 @@
+# Sentinel candidate profile (TEMPLATE)
+#
+# Used by the Phase 12+ job-pipeline scorer (skills/job_score.py) and
+# adaptive title filter (core/adaptive_filter.py). EVERYTHING below is
+# a placeholder -- replace with your own values, or delete the file
+# entirely if you don't use the job-search domain.
+#
+# Edit via /profile set <field> <value> in Telegram, OR open this
+# file directly. file_guard tracks SHA-256 -- it'll DM you on edit.
+
+candidate:
+  full_name: "YOUR NAME HERE"
+  email: "your.email@example.com"
+  phone: ""
+  location: "Your City, ST"
+  linkedin: ""
+  github: ""
+
+target_roles:
+  primary:
+    - "Your Target Job Title"
+  archetypes:
+    - name: "Your Target Archetype"
+      level: "Senior"
+      fit: "primary"
+      keywords: ["keyword1", "keyword2"]
+
+# Title filter -- applied BEFORE the LLM extracts. Drops guaranteed-
+# rejection postings before they cost Qwen GPU time.
+title_filter:
+  positive:
+    - "your-positive-keyword"
+  negative:
+    - "intern"
+    - "internship"
+    - "junior"
+  seniority_boost:
+    - "senior"
+    - "manager"
+    - "director"
+  region_boost: []
+  region_avoid: []
+
+avoid_companies: []
+
+narrative:
+  headline: >
+    One-line summary of who you are professionally.
+  exit_story: >
+    Two-sentence elevator pitch of your last role + what you're
+    looking for next.
+  superpowers:
+    - "Skill or achievement #1"
+    - "Skill or achievement #2"
+  proof_points:
+    - name: "Most recent role"
+      hero_metric: "Quantified outcome"
+
+compensation:
+  target_range_usd: "$XK-YK OTE"
+  minimum_usd: "$XK base"
+
+location:
+  primary_city: "Your City, ST"
+  primary_zip: "00000"
+  workplace_preference: "all"     # all | on-site | hybrid | remote
+  onsite_max_miles: 30
+  willing_to_relocate: false
+  visa_status: "US citizen, no sponsorship needed"
+  accepted_states: []
+
+tools:
+  crm: []
+  bi: []
+  oem: []
+  other: []
+
+education: []
+certifications: []

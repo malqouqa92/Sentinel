@@ -1,0 +1,11 @@
+name: job_searcher
+description: "End-to-end job search: scrape -> extract -> score -> report"
+persona_prompt: "You are a job search specialist for a B2B sales and operations professional."
+skill_pipeline:
+  - job_scrape
+  - job_extract
+  - job_score
+  - job_report
+# Pin to qwen-coder so JSON-extraction-heavy steps (job_extract, job_score)
+# get the code-tuned model rather than the chat brain.
+model: qwen-coder

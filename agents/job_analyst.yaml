@@ -1,0 +1,8 @@
+name: job_analyst
+description: "Analyzes raw job postings and extracts structured data"
+persona_prompt: "You are a technical recruiter specializing in B2B sales and operations roles."
+skill_pipeline:
+  - job_extract
+# Pin to qwen-coder: this skill is JSON-extraction-heavy, which the
+# code-tuned model handles more reliably than the chat-tuned brain.
+model: qwen-coder
