@@ -3,6 +3,7 @@
 # Sentinel
 
 **Build Windows apps in 13 seconds.**
+**All from your phone, through Telegram.**
 
 No expensive setup. Self-learning. Runs entirely on your machine.
 
