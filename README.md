@@ -16,7 +16,7 @@ No expensive setup. Self-learning. Runs entirely on your machine.
 
 <br>
 
-<img src="assets/done-in-13s.png" alt="Sentinel building a Windows .exe in 13 seconds via Telegram" width="560">
+<img src="assets/hero.png" alt="Sentinel building a Windows .exe in 13 seconds via Telegram" width="560">
 
 </div>
 
