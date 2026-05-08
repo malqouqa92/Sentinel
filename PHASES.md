@@ -1631,3 +1631,49 @@ Sentinel onto a new machine takes zero manual config:
   continues -- the bot runs fine without PyInstaller, only the
   `/gwenask`->.exe pipeline breaks. Step 8 (Claude CLI) similarly
   degrades gracefully -- bot runs Qwen-only without it.
+
+---
+
+## Phase 19 — Public Release 1.0 (2026-05-07)
+
+Open-sourced the project at https://github.com/malqouqa92/Sentinel.
+
+**Scrub pipeline (5 batches, in `Desktop/Sentient/sentinel/`):**
+
+| Batch | What got removed/changed |
+|---|---|
+| 1 | 73 clutter files: knowledge.db backups, dev scratch tests, phase demos, old workspace artifacts, Sentinel-Setup.exe build artifact, snapshot/regressed-snapshot files. |
+| 2 | `.env.bot` git-rm + `.env.example` template; `start_bot.ps1` rewritten to read `.env.bot` at runtime; `workspace/persona/{PROFILE.yml, USER.md}` replaced with generic templates. |
+| 3 | All hardcoded `C:/Users/Sammy/...` paths in code/docs scrubbed. New `config.SENTINEL_DEMOS_DIR` (defaults to `~/Desktop/Sentinel-Demos`, override via env var). `GWENASK_SYSTEM` and `_AI_PROMPT_HEADERS` use `${SENTINEL_DEMOS_DIR}` Template placeholders, substituted at class-load. `IDENTITY.md` scrubbed of owner-specific info. |
+| 4 | `README.md` (top-tier rewrite, hero image, badges, comparison table, side-by-side feature grid) + `LICENSE` (MIT). |
+| 5 | Final scrub: `tests/test_phase16_secrets_scrub.py` token fixtures swapped to synthetic; `_string_Template` import scope fix; `PHASES.md` historical owner-project citation generalized. |
+
+**History flatten:**
+
+After the 5 batches landed, the entire repo was orphan-branched into a single `Initial public release` commit authored as `malqouqa92@users.noreply.github.com`. That dropped every `Co-Authored-By: Claude` trailer that had accumulated during dev sessions. Public history shows one commit + a few small tagline/asset cleanups.
+
+**Final shape:**
+
+- README.md: hero `assets/hero.png` (the "Done in 13s" Telegram screenshot) + 4 supporting screenshots + comparison table vs cloud agents and server-side agents.
+- 5 PNG assets in `assets/` referenced via relative paths (more durable than github user-attachments URLs; survives forks).
+- LICENSE: MIT, copyright "Sentinel contributors".
+- Zero personal identifiers in tracked source. Old (rotated) bot token + user ID remain only in the parallel dev folder's history; new token is in `Downloads/Sentient/sentinel/.env.bot` (gitignored) and active in the live bot.
+
+### Decisions captured during Phase 19
+
+- **Two folder split, not in-place edit.** `Downloads/Sentient/sentinel/` stays the live dev folder where the bot runs; `Desktop/Sentient/sentinel/` is the public-release source-of-truth. Avoids touching the running bot during scrub work.
+- **Squash vs preserve history.** Chose orphan-branch single commit. Trade-off: GitHub history shows nothing about how the project evolved, but it also shows zero AI co-author trailers. PHASES.md preserves the engineering narrative the commits would have shown anyway.
+- **Use `${SENTINEL_DEMOS_DIR}` Template placeholders, not literal paths.** Lets the GWENASK_SYSTEM prompt resolve to whatever the user's home is at runtime, while keeping the source readable + grep-able. `string.Template.safe_substitute` chosen over `.format()` to avoid escaping the `{x}` curly braces in the worked Python examples.
+- **Repo `assets/` over GitHub user-attachments URLs.** "Drag and drop" upload generates `user-attachments.githubusercontent.com` URLs that work but are external and could rot. Putting PNGs in `assets/` makes the repo self-contained, survives forks, and lets contributors edit images via PR.
+- **Top-tier README format mimicking high-star repos.** Hero block centered with `<div align="center">`, badges row, hero image at top, comparison table (cloud vs server-side vs Sentinel), HTML `<table>` for the 2x2 feature grid, `[shields.io]` badges, "Built on" callout block. No AI tells (no emoji-headed sections, no marketing voice, no "introducing" / "robust" / "seamless").
+- **Tagline iteration.** Started with "Build Windows apps in 13 seconds." Owner added "All from your phone, through Telegram" as a parallel bold line in the hero.
+
+### Known caveats
+
+- The OLD bot token (rotated via @BotFather mid-session) still exists in the dev folder's git history. Old token is harmless; new token is only in the gitignored `.env.bot`.
+- `ps2exe` self-extracting installer (`Sentinel-Setup.exe`) was built and works, but the user-facing flow is "clone the repo + run setup.ps1" because that's simpler than worrying about SmartScreen + Defender false positives on the .exe wrapper.
+- README's "any PC" claim relies on Ollama CPU-mode, which is functional but ~10x slower than GPU mode for the 3B coder model. Honest caveat embedded in README's hardware section.
+
+### LinkedIn / Reddit launch posts
+
+Drafted but not yet shipped (owner's job to post). Voice: no AI footprint, no em-dashes, concrete numbers, honest "what's rough" section. R/LocalLLaMA flagged as best subreddit fit ("4GB GPU + hybrid local-Qwen + Claude-CLI ceiling" is exactly their genre).

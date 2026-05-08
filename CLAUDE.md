@@ -1,5 +1,7 @@
 # CLAUDE.md — Project Sentinel
 
+> **Public repo:** https://github.com/malqouqa92/Sentinel (single squashed `Initial public release` commit; PHASES.md carries the dev narrative). MIT licensed.
+>
 > **Phase history & decisions:** see [`PHASES.md`](PHASES.md) for what was built in each phase, the reasoning behind key choices, and known footguns. Read it before changing the architecture.
 >
 > **Setup on a new PC:** see [`SETUP.md`](SETUP.md) — three layered install paths (raw `setup.ps1` / `bootstrap.ps1` fetch+chain / `Sentinel-Setup.exe` clickable), inline Telegram credential walkthrough, troubleshooting, uninstall.
